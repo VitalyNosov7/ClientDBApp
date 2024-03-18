@@ -67,16 +67,16 @@
                         </Grid.RowDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0" Content="ФИО"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FullNamePerson}"/>
+                        <TextBox x:Name="FullNamePersonAdd_Text" Grid.Row="0" Grid.Column="1" Text="{Binding FullNamePerson}"/>
 
                         <Label Grid.Row="1" Grid.Column="0" Content="Возраст"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Age}"/>
+                        <TextBox x:Name="AgePersonAdd_Text" Grid.Row="1" Grid.Column="1" Text="{Binding Age}"/>
 
                         <Label Grid.Row="2" Grid.Column="0" Content="Пол"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>
+                        <TextBox x:Name="GenderPersonAdd_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>
 
                         <Label Grid.Row="3" Grid.Column="0" Content="Телефон"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"/>
+                        <TextBox x:Name="PhonePersonAdd_Text" Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"/>
 
                         <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Добавить" Margin="5" Click="AddPerson"/>
 
@@ -105,18 +105,18 @@
                         </Grid.RowDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0" Content="ФИО"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FullNamePerson}"/>
+                        <TextBox x:Name="FullNamePersonUpdate_Text"  Grid.Row="0" Grid.Column="1" Text="{Binding FullNamePerson}"/>
 
                         <Label Grid.Row="1" Grid.Column="0" Content="Возраст"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Age}"/>
+                        <TextBox x:Name="AgePersonUpdate_Text" Grid.Row="1" Grid.Column="1" Text="{Binding Age}"/>
 
                         <Label Grid.Row="2" Grid.Column="0" Content="Пол"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>
+                        <TextBox x:Name="GenderPersonUpdate_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>
 
                         <Label Grid.Row="3" Grid.Column="0" Content="Телефон"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"/>
+                        <TextBox x:Name="PhonePersonUpdate_Text" Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"/>
 
-                        <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Сохранить изменения" Margin="5" Click="UpdatePerson"/>
+                        <Button x:Name="SaveUpdate_Button" Grid.Row="4" Grid.ColumnSpan="2" Content="Сохранить изменения" Margin="5" Click="UpdatePerson" IsEnabled="False"/>
 
                     </Grid>
 

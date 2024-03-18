@@ -1,5 +1,7 @@
 ﻿using ClientsBaseApplication.Data;
+using Microsoft.Data.Sqlite;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ClientsBaseApplication
 {
@@ -29,6 +31,35 @@ namespace ClientsBaseApplication
             PersonDG.ItemsSource = dbContext.Persons.ToList();
         }
 
+        public bool isValid(TextBox FullNamePerson,
+                            TextBox AgePerson,
+                            TextBox GenderPerson,
+                            TextBox PhonePerson)
+        {
+            if (FullNamePerson.Text == string.Empty)
+            {
+                MessageBox.Show("Введите полное имя клиента!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (AgePerson.Text == string.Empty)
+            {
+                MessageBox.Show("Введите возраст клиента!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (GenderPerson.Text == string.Empty)
+            {
+                MessageBox.Show("Введите пол клиента!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (PhonePerson.Text == string.Empty)
+            {
+                MessageBox.Show("Введите телефон клиента!", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Добавить клиента.
         /// </summary>
@@ -36,11 +67,26 @@ namespace ClientsBaseApplication
         /// <param name="e"></param>
         private void AddPerson(object s, RoutedEventArgs e)
         {
-            dbContext.Persons.Add(NewPerson);
-            dbContext.SaveChanges();
-            GetPerson();
-            NewPerson = new Person();
-            AddNewPersonGrid.DataContext = NewPerson;
+            try
+            {
+                if (isValid(FullNamePersonAdd_Text,
+                            AgePersonAdd_Text,
+                            GenderPersonAdd_Text,
+                            PhonePersonAdd_Text))
+                {
+                    dbContext.Persons.Add(NewPerson);
+                    dbContext.SaveChanges();
+                    GetPerson();
+                    NewPerson = new Person();
+                    AddNewPersonGrid.DataContext = NewPerson;
+                    MessageBox.Show("Успешное добавление!", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (SqliteException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         /// <summary>
@@ -49,6 +95,7 @@ namespace ClientsBaseApplication
         private void UpdatePersonForEdit(object s, RoutedEventArgs e)
         {
             selectedPerson = (s as FrameworkElement).DataContext as Person;
+            SaveUpdate_Button.IsEnabled = true;
             UpdatePersonGrid.DataContext = selectedPerson;
         }
 
@@ -59,9 +106,23 @@ namespace ClientsBaseApplication
         /// <param name="e"></param>
         private void UpdatePerson(object s, RoutedEventArgs e)
         {
-            dbContext.Update(selectedPerson);
-            dbContext.SaveChanges();
-            GetPerson();
+            try
+            {
+                //if (isValid(FullNamePersonUpdate_Text,
+                //            AgePersonUpdate_Text,
+                //            GenderPersonUpdate_Text,
+                //            PhonePersonUpdate_Text) && (selectedPerson != null))
+                {
+                    dbContext.Update(selectedPerson);
+                    dbContext.SaveChanges();
+                    GetPerson();
+                    MessageBox.Show("Успешное изменение!", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (SqliteException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
