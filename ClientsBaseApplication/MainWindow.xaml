@@ -1,0 +1,129 @@
+﻿<Window x:Class="ClientsBaseApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientsBaseApplication"
+        mc:Ignorable="d"
+        Title="Клиенты" Height="462" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <DataGrid AutoGenerateColumns="False" Margin="5,10,5,5" Name="PersonDG" IsReadOnly="True" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding FullNamePerson}"/>
+                <DataGridTextColumn Header="Возраст" Binding="{Binding Age}"/>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Gender}"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"/>
+
+                <DataGridTemplateColumn Header="Редактировать">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" Click="UpdatePersonForEdit"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Удалить">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" Click="DeletePerson"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="5">
+                <StackPanel Margin="5">
+                    <Label Content="Добавить клиента" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    <Grid Margin="5" x:Name="AddNewPersonGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="ФИО"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FullNamePerson}"/>
+
+                        <Label Grid.Row="1" Grid.Column="0" Content="Возраст"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Age}"/>
+
+                        <Label Grid.Row="2" Grid.Column="0" Content="Пол"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>
+
+                        <Label Grid.Row="3" Grid.Column="0" Content="Телефон"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"/>
+
+                        <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Добавить" Margin="5" Click="AddPerson"/>
+
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+
+
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="5">
+                <StackPanel Margin="5">
+                    <Label Content="Редактировать клиента" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    <Grid Margin="5" x:Name="UpdatePersonGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="ФИО"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FullNamePerson}"/>
+
+                        <Label Grid.Row="1" Grid.Column="0" Content="Возраст"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Age}"/>
+
+                        <Label Grid.Row="2" Grid.Column="0" Content="Пол"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>
+
+                        <Label Grid.Row="3" Grid.Column="0" Content="Телефон"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"/>
+
+                        <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Сохранить изменения" Margin="5" Click="UpdatePerson"/>
+
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</Window>
