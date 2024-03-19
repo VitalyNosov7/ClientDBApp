@@ -77,7 +77,6 @@
                         <TextBox x:Name="AgePersonAdd_Text" Grid.Row="1" Grid.Column="1" Text="{Binding Age}"/>
 
                         <Label Grid.Row="2" Grid.Column="0" Content="Пол"/>
-                        <!--<TextBox x:Name="GenderPersonAdd_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>-->
                         <ComboBox x:Name="GenderPersonAdd_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}">
                             <TextBlock>М</TextBlock>
                             <TextBlock>Ж</TextBlock>
@@ -123,7 +122,6 @@
                         <TextBox x:Name="AgePersonUpdate_Text" Grid.Row="1" Grid.Column="1" Text="{Binding Age}"/>
 
                         <Label Grid.Row="2" Grid.Column="0" Content="Пол"/>
-                        <!--<TextBox x:Name="GenderPersonUpdate_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>-->
                         <ComboBox x:Name="GenderPersonUpdate_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}">
                             <TextBlock>М</TextBlock>
                             <TextBlock>Ж</TextBlock>

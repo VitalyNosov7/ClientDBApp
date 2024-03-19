@@ -30,7 +30,6 @@ namespace ClientsBaseApplication
         private void GetPerson()
         {
             PersonDG.ItemsSource = dbContext.Persons.ToList();
-            //SaveUpdate_Button.IsEnabled = false;
         }
 
         public bool isValid(TextBox FullNamePerson,
@@ -114,34 +113,14 @@ namespace ClientsBaseApplication
         {
             try
             {
-                //if (isValid(FullNamePersonUpdate_Text,
-                //            AgePersonUpdate_Text,
-                //            GenderPersonUpdate_Text,
-                //            PhonePersonUpdate_Text))
-                //{
                     dbContext.Update(selectedPerson);
                     dbContext.SaveChanges();
                     GetPerson();
-                    //MessageBox.Show("Успешное изменение!", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //ClearTexBoxField(FullNamePersonUpdate_Text,
-                    //                 AgePersonUpdate_Text,
-                    //                 GenderPersonUpdate_Text,
-                    //                 PhonePersonUpdate_Text);
-                    //SaveUpdate_Button.IsEnabled = false;
-
-                //}
             }
             catch (SqliteException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            //MessageBox.Show("Успешное изменение!", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);
-            //ClearTexBoxField(FullNamePersonUpdate_Text,
-            //                 AgePersonUpdate_Text,
-            //                 GenderPersonUpdate_Text,
-            //                 PhonePersonUpdate_Text);
-            //SaveUpdate_Button.IsEnabled = false;
-
         }
 
         /// <summary>
