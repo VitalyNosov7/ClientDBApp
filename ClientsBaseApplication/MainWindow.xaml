@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientsBaseApplication"
         mc:Ignorable="d"
-        Title="Клиенты" Height="462" Width="800">
+        Title="Клиенты"
+        Height="462" Width="800"
+        ResizeMode="NoResize">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -19,7 +22,8 @@
                 <DataGridTextColumn Header="ФИО" Binding="{Binding FullNamePerson}"/>
                 <DataGridTextColumn Header="Возраст" Binding="{Binding Age}"/>
                 <DataGridTextColumn Header="Пол" Binding="{Binding Gender}"/>
-                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"/>
+                <DataGridTextColumn Header="Телефон"
+                                    Binding="{Binding Phone}"/>
 
                 <DataGridTemplateColumn Header="Редактировать">
                     <DataGridTemplateColumn.CellTemplate>
@@ -73,10 +77,18 @@
                         <TextBox x:Name="AgePersonAdd_Text" Grid.Row="1" Grid.Column="1" Text="{Binding Age}"/>
 
                         <Label Grid.Row="2" Grid.Column="0" Content="Пол"/>
-                        <TextBox x:Name="GenderPersonAdd_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>
+                        <!--<TextBox x:Name="GenderPersonAdd_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>-->
+                        <ComboBox x:Name="GenderPersonAdd_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}">
+                            <TextBlock>М</TextBlock>
+                            <TextBlock>Ж</TextBlock>
+                        </ComboBox>
 
                         <Label Grid.Row="3" Grid.Column="0" Content="Телефон"/>
-                        <TextBox x:Name="PhonePersonAdd_Text" Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"/>
+                        <TextBox x:Name="PhonePersonAdd_Text"
+                                 Grid.Row="3"
+                                 Grid.Column="1"
+                                 Text="{Binding Phone}"
+                                 MaxLength="10"/>
 
                         <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Добавить" Margin="5" Click="AddPerson"/>
 
@@ -111,10 +123,17 @@
                         <TextBox x:Name="AgePersonUpdate_Text" Grid.Row="1" Grid.Column="1" Text="{Binding Age}"/>
 
                         <Label Grid.Row="2" Grid.Column="0" Content="Пол"/>
-                        <TextBox x:Name="GenderPersonUpdate_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>
+                        <!--<TextBox x:Name="GenderPersonUpdate_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}"/>-->
+                        <ComboBox x:Name="GenderPersonUpdate_Text" Grid.Row="2" Grid.Column="1" Text="{Binding Gender}">
+                            <TextBlock>М</TextBlock>
+                            <TextBlock>Ж</TextBlock>
+                        </ComboBox>
 
                         <Label Grid.Row="3" Grid.Column="0" Content="Телефон"/>
-                        <TextBox x:Name="PhonePersonUpdate_Text" Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"/>
+                        <TextBox x:Name="PhonePersonUpdate_Text"
+                                 Grid.Row="3"
+                                 Grid.Column="1"
+                                 Text="{Binding Phone}"/>
 
                         <Button x:Name="SaveUpdate_Button" Grid.Row="4" Grid.ColumnSpan="2" Content="Сохранить изменения" Margin="5" Click="UpdatePerson" IsEnabled="False"/>
 

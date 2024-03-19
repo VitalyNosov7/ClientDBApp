@@ -21,6 +21,7 @@ namespace ClientsBaseApplication
             GetPerson();
 
             AddNewPersonGrid.DataContext = NewPerson;
+
         }
 
         /// <summary>
@@ -29,11 +30,12 @@ namespace ClientsBaseApplication
         private void GetPerson()
         {
             PersonDG.ItemsSource = dbContext.Persons.ToList();
+            //SaveUpdate_Button.IsEnabled = false;
         }
 
         public bool isValid(TextBox FullNamePerson,
                             TextBox AgePerson,
-                            TextBox GenderPerson,
+                            ComboBox GenderPerson,
                             TextBox PhonePerson)
         {
             if (FullNamePerson.Text == string.Empty)
@@ -80,13 +82,16 @@ namespace ClientsBaseApplication
                     NewPerson = new Person();
                     AddNewPersonGrid.DataContext = NewPerson;
                     MessageBox.Show("Успешное добавление!", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ClearTexBoxField(FullNamePersonAdd_Text,
+                                     AgePersonAdd_Text,
+                                     GenderPersonAdd_Text,
+                                     PhonePersonAdd_Text);
                 }
             }
             catch (SqliteException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         /// <summary>
@@ -97,6 +102,7 @@ namespace ClientsBaseApplication
             selectedPerson = (s as FrameworkElement).DataContext as Person;
             SaveUpdate_Button.IsEnabled = true;
             UpdatePersonGrid.DataContext = selectedPerson;
+
         }
 
         /// <summary>
@@ -111,18 +117,31 @@ namespace ClientsBaseApplication
                 //if (isValid(FullNamePersonUpdate_Text,
                 //            AgePersonUpdate_Text,
                 //            GenderPersonUpdate_Text,
-                //            PhonePersonUpdate_Text) && (selectedPerson != null))
-                {
+                //            PhonePersonUpdate_Text))
+                //{
                     dbContext.Update(selectedPerson);
                     dbContext.SaveChanges();
                     GetPerson();
-                    MessageBox.Show("Успешное изменение!", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
+                    //MessageBox.Show("Успешное изменение!", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //ClearTexBoxField(FullNamePersonUpdate_Text,
+                    //                 AgePersonUpdate_Text,
+                    //                 GenderPersonUpdate_Text,
+                    //                 PhonePersonUpdate_Text);
+                    //SaveUpdate_Button.IsEnabled = false;
+
+                //}
             }
             catch (SqliteException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            //MessageBox.Show("Успешное изменение!", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);
+            //ClearTexBoxField(FullNamePersonUpdate_Text,
+            //                 AgePersonUpdate_Text,
+            //                 GenderPersonUpdate_Text,
+            //                 PhonePersonUpdate_Text);
+            //SaveUpdate_Button.IsEnabled = false;
+
         }
 
         /// <summary>
@@ -136,6 +155,24 @@ namespace ClientsBaseApplication
             dbContext.Persons.Remove(personaToBeDeleted);
             dbContext.SaveChanges();
             GetPerson();
+        }
+
+        /// <summary>
+        /// Очищаем поля ввода данных.
+        /// </summary>
+        /// <param name="FullNamePerson"></param>
+        /// <param name="AgePerson"></param>
+        /// <param name="GenderPerson"></param>
+        /// <param name="PhonePerson"></param>
+        public void ClearTexBoxField(TextBox FullNamePerson,
+                                     TextBox AgePerson,
+                                     ComboBox GenderPerson,
+                                     TextBox PhonePerson)
+        {
+            FullNamePerson.Clear();
+            AgePerson.Clear();
+            GenderPerson.SelectedIndex = -1;
+            PhonePerson.Clear();
         }
     }
 }
